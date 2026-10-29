@@ -1,0 +1,38 @@
+{
+	"formatVersion": 1,
+	"races": [
+		{
+			"id": "skeleton",
+			"_comment": "PlayerModelLib model of the skeletons mod. Without that mod they render as seraphs.",
+			"name": { "langKey": "canrpgmobs:race-skeleton" },
+			"body": "humanoid",
+			"faction": "undead",
+			"animSet": "humanoid_base",
+			"soundSet": "skeleton",
+			"appearance": {
+				"kind": "plm",
+				"model": "skeletons:skeleton",
+				"size": 1.0,
+				"presets": [
+					{
+						"id": "bleached", "weight": 3,
+						"parts": {
+							"skeleton-bonecolor": "3", "skeleton-skullinside": "3", "skeleton-eyecolor": "cadmium-orange", "skeleton-eyes": "2",
+							"skeleton-skull": "0", "skeleton-jaw": "1", "skeleton-ribcage": "0", "skeleton-accessories": "0"
+						}
+					},
+					{
+						"id": "grave", "weight": 1,
+						"parts": {
+							"skeleton-bonecolor": "12", "skeleton-skullinside": "12", "skeleton-eyecolor": "rot", "skeleton-eyes": "12",
+							"skeleton-skull": "4", "skeleton-jaw": "3", "skeleton-ribcage": "2", "skeleton-accessories": "2noglow"
+						}
+					}
+				],
+				"gear": ["game:clothes-lowerbody-forlorn-pants", "game:clothes-waist-forlorn-belt"]
+			},
+			"stats": { "maxHealth": 16, "meleeDamage": 3, "meleeTier": 1, "moveSpeed": 0.028, "resist": { "frost": 0.3 } },
+			"nameFormat": { "langKey": "canrpgmobs:race-nameformat" }
+		}
+	]
+}

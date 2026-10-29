@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="canrpgmobs/canrpgmobs/canrpgmobs.csproj" />
+  <Project Path="canrpgmobs/ZZCakeBuild/CakeBuild.csproj" />
+</Solution>

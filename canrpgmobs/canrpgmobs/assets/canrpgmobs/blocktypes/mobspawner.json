@@ -1,0 +1,10 @@
+{
+	"code": "mobspawner",
+	"class": "canrpgmobs.BlockMobSpawner",
+	"entityClass": "canrpgmobs.MobSpawner",
+	"blockmaterial": "Stone",
+	"resistance": 1000,
+	"textures": { "all": { "base": "game:block/stone/rock/granite1" } },
+	"shape": { "base": "game:block/basic/cube" },
+	"creativeinventory": { "general": ["*"], "meta": ["*"] }
+}

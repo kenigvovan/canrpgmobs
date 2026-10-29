@@ -1,0 +1,11 @@
+.vs/
+[Bb]in/
+[Oo]bj/
+[Rr]eleases/
+*.user
+*.suo
+
+### Local notes / plans ###
+*.md
+**/docs/
+**/.claude/

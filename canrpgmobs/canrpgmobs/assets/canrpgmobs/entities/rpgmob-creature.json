@@ -1,0 +1,47 @@
+{
+	"code": "rpgmob-creature",
+	"class": "canrpgmobs.EntityRpgMob",
+	"tags": ["habitat-land"],
+	"weight": 80,
+	"hitboxSize": { "x": 1.2, "y": 1 },
+	"deadHitboxSize": { "x": 1, "y": 0.75 },
+	"eyeHeight": 0.9,
+	"drops": [],
+	"client": {
+		"renderer": "Shape",
+		"_comment": "Fallback look only: canrpgmobs:appearance swaps in each mob's own shape, textures and hitbox.",
+		"shape": { "base": "game:entity/animal/mammal/wolf/eurasian-adult" },
+		"texture": { "base": "game:entity/animal/mammal/wolf/eurasian-adult1" },
+		"behaviors": [
+			{ "code": "repulseagents" },
+			{ "code": "controlledphysics", "stepHeight": 1.1251 },
+			{ "code": "floatupwhenstuck", "onlyWhenDead": true },
+			{ "code": "interpolateposition" },
+			{ "code": "canrpgmobs:appearance" }
+		],
+		"animations": [
+			{ "code": "idle", "animation": "idle", "blendMode": "AddAverage", "easeOutSpeed": 4, "triggeredBy": { "defaultAnim": true } },
+			{ "code": "die", "animation": "death", "animationSpeed": 1.25, "weight": 10, "blendMode": "Average", "triggeredBy": { "onControls": ["dead"] } },
+			{ "code": "hurt", "animation": "hurt", "animationSpeed": 2.2, "weight": 10, "blendMode": "AddAverage" }
+		]
+	},
+	"server": {
+		"behaviors": [
+			{ "code": "repulseagents" },
+			{ "code": "controlledphysics", "stepHeight": 1.1251 },
+			{ "code": "health", "currenthealth": 20, "maxhealth": 20 },
+			{ "code": "floatupwhenstuck", "onlyWhenDead": true },
+			{ "code": "deaddecay", "hoursToDecay": 0.5 },
+			{ "code": "canrpgmobs:appearance" },
+			{ "code": "canrpgspellcaster" },
+			{ "code": "canrpgspellcooldowns" },
+			{ "code": "canrpgrpgstats" },
+			{ "code": "taskai", "aiCreatureType": "LandCreature", "aitasks": [] },
+			{ "code": "canrpgmobs:mob" }
+		]
+	},
+	"sounds": {
+		"hurt": "game:creature/wolf/hurt",
+		"death": "game:creature/wolf/hurt"
+	}
+}

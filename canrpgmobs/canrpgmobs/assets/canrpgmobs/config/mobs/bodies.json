@@ -1,0 +1,58 @@
+{
+	"formatVersion": 1,
+	"animSets": [
+		{
+			"id": "humanoid_base",
+			"_comment": "Seraph animations, used by every PlayerModelLib body. /canrpgmobsc anims lists what a shape has.",
+			"anims": {
+				"idle": { "animation": "idle1", "blendMode": "Average", "defaultAnim": true },
+				"walk": { "animation": "walk", "speed": 1.3, "blendMode": "Average" },
+				"run": { "animation": "sprint", "speed": 0.9, "blendMode": "Average" },
+				"flee": { "animation": "sprint", "speed": 1.0, "blendMode": "Average" },
+				"attack": { "animation": "hit", "blendMode": "Add" },
+				"cast": { "animation": "interactstatic", "blendMode": "Add", "easeIn": 10, "easeOut": 6 },
+				"release": { "animation": "throw", "blendMode": "Add", "easeIn": 999 },
+				"shoot": { "animation": "bowaim", "blendMode": "Add", "easeIn": 10, "easeOut": 6 },
+				"hurt": { "animation": "hurt", "speed": 3, "blendMode": "Add" },
+				"die": { "animation": "die", "speed": 1.5, "blendMode": "Average", "onControls": ["dead"] }
+			}
+		},
+		{
+			"id": "wolf",
+			"_comment": "Vanilla wolf shape (game:entity/animal/mammal/wolf/eurasian-adult).",
+			"anims": {
+				"idle": { "animation": "idle", "blendMode": "AddAverage", "easeOut": 4, "defaultAnim": true },
+				"walk": { "animation": "Walk", "blendMode": "Average" },
+				"run": { "animation": "Run", "speed": 1.5, "blendMode": "Average" },
+				"flee": { "animation": "Run", "speed": 2, "blendMode": "Average" },
+				"attack": { "animation": "attack-withwindup", "speed": 1.5, "weight": 100, "blendMode": "Average" },
+				"cast": { "animation": "Howl", "blendMode": "Average" },
+				"release": { "animation": "Attack-High", "speed": 1.5, "blendMode": "Average" },
+				"taunt": { "animation": "Howl", "speed": 0.7, "blendMode": "Average" },
+				"hurt": { "animation": "hurt", "speed": 2.2, "weight": 10, "blendMode": "AddAverage" },
+				"die": { "animation": "death", "speed": 1.25, "weight": 10, "blendMode": "Average", "onControls": ["dead"] }
+			}
+		}
+	],
+	"soundSets": [
+		{
+			"id": "humanoid",
+			"sounds": {
+				"hurt": { "path": "player/hurt" },
+				"death": { "path": "player/death" }
+			}
+		},
+		{
+			"id": "wolf",
+			"idleChance": 0.05,
+			"sounds": {
+				"hurt": { "path": "creature/wolf/hurt" },
+				"death": { "path": "creature/wolf/hurt" },
+				"idle": { "path": "creature/wolf/howl*", "range": 64, "pitchVariance": 0.25 },
+				"aggro": { "path": "creature/wolf/growl*", "chance": 0.8 },
+				"attack": { "path": "creature/wolf/attack*" },
+				"castStart": { "path": "creature/wolf/howl*", "range": 48 }
+			}
+		}
+	]
+}

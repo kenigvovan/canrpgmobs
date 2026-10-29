@@ -1,0 +1,66 @@
+{
+	"code": "rpgmob-humanoid",
+	"class": "canrpgmobs.EntityRpgMob",
+	"tags": ["humanoid", "habitat-land"],
+	"weight": 60,
+	"canClimb": true,
+	"hitboxSize": { "x": 0.6, "y": 1.75 },
+	"deadHitboxSize": { "x": 0.75, "y": 0.5 },
+	"eyeHeight": 1.6,
+	"drops": [],
+	"client": {
+		"renderer": "Shape",
+		"shape": { "base": "game:entity/humanoid/seraph-faceless" },
+		"texture": { "base": "game:entity/humanoid/seraph-naked-hairless" },
+		"behaviors": [
+			{ "code": "repulseagents" },
+			{ "code": "controlledphysics", "stepHeight": 1.01 },
+			{ "code": "floatupwhenstuck", "onlyWhenDead": true },
+			{ "code": "interpolateposition" },
+			{ "code": "canrpgmobs:appearance" },
+			{ "code": "canrpgmobs:skin" },
+			{ "code": "canrpgmobs:gear" },
+			{ "code": "PlayerModelLib:EntityTextureSourceBehavior" }
+		],
+		"animations": [
+			{ "code": "idle", "animation": "idle1", "blendMode": "Average", "triggeredBy": { "defaultAnim": true } },
+			{ "code": "walk", "animation": "walk", "blendMode": "Average", "animationSpeed": 1.3 },
+			{ "code": "sprint", "animation": "sprint", "blendMode": "Average", "animationSpeed": 0.9 },
+			{ "code": "die", "animation": "die", "blendMode": "Average", "animationSpeed": 1.5, "triggeredBy": { "onControls": ["dead"] } },
+			{ "code": "hurt", "animation": "hurt", "blendMode": "Add", "animationSpeed": 3 },
+			{
+				"code": "hit", "animation": "hit", "blendMode": "Add",
+				"elementWeight": { "UpperArmR": 20, "LowerArmR": 20, "UpperArmL": 20, "LowerArmL": 20 },
+				"elementBlendMode": { "UpperArmR": "AddAverage", "LowerArmR": "AddAverage", "UpperArmL": "AddAverage", "LowerArmL": "AddAverage" }
+			},
+			{
+				"code": "interactstatic", "animation": "interactstatic", "blendMode": "Add", "easeInSpeed": 10, "easeOutSpeed": 6,
+				"elementWeight": { "UpperArmR": 8, "LowerArmR": 8, "UpperArmL": 0.2, "LowerArmL": 0.2 }
+			},
+			{
+				"code": "throw", "animation": "throw", "blendMode": "Add", "easeInSpeed": 999,
+				"elementWeight": { "UpperArmR": 20, "LowerArmR": 20, "UpperArmL": 20, "LowerArmL": 20 }
+			}
+		]
+	},
+	"server": {
+		"behaviors": [
+			{ "code": "repulseagents" },
+			{ "code": "controlledphysics", "stepHeight": 1.01 },
+			{ "code": "health", "currenthealth": 20, "maxhealth": 20 },
+			{ "code": "floatupwhenstuck", "onlyWhenDead": true },
+			{ "code": "deaddecay", "hoursToDecay": 0.5 },
+			{ "code": "canrpgmobs:appearance" },
+			{ "code": "canrpgmobs:skin" },
+			{ "code": "canrpgspellcaster" },
+			{ "code": "canrpgspellcooldowns" },
+			{ "code": "canrpgrpgstats" },
+			{ "code": "taskai", "aiCreatureType": "LandCreature", "aitasks": [] },
+			{ "code": "canrpgmobs:mob" }
+		]
+	},
+	"sounds": {
+		"hurt": "game:player/hurt",
+		"death": "game:player/death"
+	}
+}

@@ -1,0 +1,64 @@
+{
+	"formatVersion": 1,
+	"factions": [
+		{
+			"id": "players",
+			"_comment": "Players and anything they guard (hunter pets). Membership is fixed in code.",
+			"name": { "langKey": "canrpgmobs:faction-players" }
+		},
+		{
+			"id": "wildlife",
+			"_comment": "Every creature no faction claims. Neutral unless a faction says otherwise.",
+			"name": { "langKey": "canrpgmobs:faction-wildlife" }
+		},
+		{
+			"id": "monsters",
+			"_comment": "Mobs whose race and template set no faction.",
+			"name": { "langKey": "canrpgmobs:faction-monsters" },
+			"relations": { "players": "hostile" }
+		},
+		{
+			"id": "greenskins",
+			"name": { "langKey": "canrpgmobs:faction-greenskins" },
+			"relations": { "players": "hostile", "bandits": "hostile", "warband": "ally", "clans": "hostile" }
+		},
+		{
+			"id": "bandits",
+			"name": { "langKey": "canrpgmobs:faction-bandits" },
+			"relations": { "players": "hostile" }
+		},
+		{
+			"id": "undead",
+			"_comment": "Hostile to everyone but its cult, and only goes after the living sides, not animals.",
+			"name": { "langKey": "canrpgmobs:faction-undead" },
+			"relations": { "*": "hostile", "cult": "ally" },
+			"attackOnSight": ["players", "greenskins", "bandits", "clans", "sylvan", "warband"]
+		},
+		{
+			"id": "clans",
+			"_comment": "Dwarves: leave travellers alone unless attacked, and fight greenskins, orks and the dead on sight.",
+			"name": { "langKey": "canrpgmobs:faction-clans" },
+			"relations": { "players": "neutral", "warband": "hostile", "undead": "hostile" },
+			"attackOnSight": ["greenskins", "warband", "undead"]
+		},
+		{
+			"id": "sylvan",
+			"_comment": "Elves: neutral to players, sworn against orks, the dead and their cult.",
+			"name": { "langKey": "canrpgmobs:faction-sylvan" },
+			"relations": { "players": "neutral", "warband": "hostile", "undead": "hostile", "cult": "hostile" },
+			"attackOnSight": ["warband", "undead", "cult"]
+		},
+		{
+			"id": "warband",
+			"_comment": "Orks: fight everyone but greenskins.",
+			"name": { "langKey": "canrpgmobs:faction-warband" },
+			"relations": { "players": "hostile", "sylvan": "hostile", "bandits": "hostile" }
+		},
+		{
+			"id": "cult",
+			"_comment": "Human necromancers, allied with the dead.",
+			"name": { "langKey": "canrpgmobs:faction-cult" },
+			"relations": { "players": "hostile", "bandits": "hostile" }
+		}
+	]
+}

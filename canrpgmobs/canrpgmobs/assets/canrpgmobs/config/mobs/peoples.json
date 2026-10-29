@@ -1,0 +1,680 @@
+{
+	"formatVersion": 1,
+	"_comment": "Content pack on the racialequality (dwarf, elf, ork, human) and skeletons (reanimated, infected, possessed) PlayerModelLib models. Without those mods the races render as seraphs and validate with warnings.",
+
+	"aiProfiles": [
+		{
+			"id": "guardian",
+			"archetype": "meleeBrute",
+			"aggroRange": 18,
+			"leashRange": 32,
+			"callForHelpRange": 16,
+			"targeting": { "selector": "threat", "switchCooldown": 2 },
+			"melee": { "damageMul": 1.0, "damageType": "SlashingAttack", "attackDurationMs": 900, "hitAtMs": 450, "cooldownMs": [1200, 1700], "animation": "attack" }
+		},
+		{
+			"id": "berserk",
+			"archetype": "meleeBrute",
+			"aggroRange": 24,
+			"leashRange": 48,
+			"callForHelpRange": 10,
+			"targeting": { "selector": "lowestHp", "switchCooldown": 3 },
+			"melee": { "damageMul": 1.1, "damageType": "SlashingAttack", "attackDurationMs": 800, "hitAtMs": 380, "cooldownMs": [900, 1300], "animation": "attack" }
+		},
+		{
+			"id": "support_caster",
+			"archetype": "support",
+			"aggroRange": 22,
+			"leashRange": 40,
+			"callForHelpRange": 16,
+			"preferredRange": [6, 12],
+			"melee": { "damageMul": 0.4, "damageType": "BluntAttack", "attackDurationMs": 1000, "hitAtMs": 500, "cooldownMs": [1600, 2200], "animation": "attack" }
+		}
+	],
+
+	"soundSets": [
+		{
+			"id": "skeleton",
+			"_comment": "Voices of the skeletons mod.",
+			"extends": "humanoid",
+			"sounds": {
+				"hurt": { "path": "skeletons:voice/bonecrunch" },
+				"death": { "path": "skeletons:voice/bonecrunch" },
+				"aggro": { "path": "skeletons:voice/xylophone", "chance": 0.6 }
+			}
+		}
+	],
+
+	"lootTables": [
+		{
+			"id": "dwarf_stash",
+			"rolls": [1, 2],
+			"emptyWeight": 1,
+			"levelCountScale": 0.1,
+			"entries": [
+				{ "code": "nugget-nativecopper", "weight": 3, "count": [1, 3] },
+				{ "code": "ingot-copper", "weight": 1 },
+				{ "code": "gear-rusty", "weight": 2, "count": [1, 2] }
+			]
+		},
+		{
+			"id": "elf_cache",
+			"rolls": [1, 1],
+			"emptyWeight": 1,
+			"entries": [
+				{ "code": "feather", "weight": 3, "count": [2, 5] },
+				{ "code": "arrow-flint", "weight": 2, "count": [3, 6] },
+				{ "code": "flint", "weight": 1, "count": [1, 2] }
+			]
+		},
+		{
+			"id": "ork_spoils",
+			"rolls": [1, 2],
+			"emptyWeight": 2,
+			"entries": [
+				{ "code": "bone", "weight": 3, "count": [1, 3] },
+				{ "code": "gear-rusty", "weight": 2 },
+				{ "code": "flint", "weight": 2, "count": [1, 3] }
+			]
+		},
+		{
+			"id": "bone_pile",
+			"rolls": [1, 2],
+			"emptyWeight": 2,
+			"entries": [
+				{ "code": "bone", "weight": 4, "count": [1, 4] },
+				{ "code": "rot", "weight": 1, "count": [1, 3] }
+			]
+		},
+		{
+			"id": "cult_tithe",
+			"rolls": [1, 1],
+			"emptyWeight": 2,
+			"entries": [
+				{ "code": "bone", "weight": 2, "count": [1, 2] },
+				{ "code": "gear-rusty", "weight": 1 },
+				{ "type": "table", "code": "bone_pile", "weight": 1 }
+			]
+		},
+		{
+			"id": "boss_hoard",
+			"rolls": [2, 3],
+			"guaranteed": [
+				{ "code": "gear-rusty", "count": [4, 8] }
+			],
+			"entries": [
+				{ "code": "ingot-copper", "weight": 2, "count": [1, 3] },
+				{ "code": "nugget-nativecopper", "weight": 3, "count": [2, 5] }
+			]
+		}
+	],
+
+	"races": [
+		{
+			"id": "dwarf",
+			"name": { "langKey": "canrpgmobs:race-dwarf" },
+			"body": "humanoid",
+			"faction": "clans",
+			"animSet": "humanoid_base",
+			"soundSet": "humanoid",
+			"loot": ["dwarf_stash"],
+			"appearance": {
+				"kind": "plm",
+				"model": "racialequality:dwarf",
+				"presets": [
+					{ "id": "ironbeard", "weight": 3, "parts": { "baseskin": "skin3", "eyecolor": "sapphire", "underwear": "breeches", "hairbase": "short-trimmed", "hairextra": "none", "facialexpression": "angry", "mustache": "mst-walrus30-fat", "beard": "dwarf1", "haircolor": "cordovan" } },
+					{ "id": "greybeard", "weight": 2, "parts": { "baseskin": "skin6", "eyecolor": "goldenrod", "underwear": "breeches", "hairbase": "balding", "hairextra": "none", "facialexpression": "neutral", "mustache": "mst-walrus05-neat", "beard": "dwarf3", "haircolor": "lightgray" } },
+					{ "id": "miner", "weight": 2, "parts": { "baseskin": "skin8", "eyecolor": "dark-green", "underwear": "breeches", "hairbase": "messy", "hairextra": "tiedback", "facialexpression": "upset", "mustache": "none", "beard": "dwarf4", "haircolor": "rosewood" } }
+				],
+				"gear": ["game:clothes-upperbody-miner", "game:clothes-lowerbody-miner", "game:clothes-foot-miner", "game:clothes-waist-heavy-tool-belt"]
+			},
+			"stats": { "maxHealth": 26, "meleeDamage": 3.2, "meleeTier": 2, "moveSpeed": 0.026, "resist": { "physical": 0.1, "fire": 0.1 } },
+			"nameFormat": { "langKey": "canrpgmobs:race-nameformat" }
+		},
+		{
+			"id": "elf",
+			"name": { "langKey": "canrpgmobs:race-elf" },
+			"body": "humanoid",
+			"faction": "sylvan",
+			"animSet": "humanoid_base",
+			"soundSet": "humanoid",
+			"loot": ["elf_cache"],
+			"appearance": {
+				"kind": "plm",
+				"model": "racialequality:elf",
+				"presets": [
+					{ "id": "silverleaf", "weight": 3, "parts": { "baseskin": "skin2", "eyecolor": "jade", "underwear": "leotard", "ears": "sharp", "hairbase": "longflowing", "hairextra": "neatbraid", "facialexpression": "serious", "haircolor": "silverchalice" } },
+					{ "id": "duskwood", "weight": 2, "parts": { "baseskin": "skin5", "eyecolor": "azure", "underwear": "leotard", "ears": "elangetears", "hairbase": "longwithstrands", "hairextra": "classicponytail", "facialexpression": "neutral", "haircolor": "wheat" } }
+				],
+				"gear": ["game:clothes-upperbody-hunters-green", "game:clothes-lowerbody-hunter-leggings", "game:clothes-foot-hunter-boots"]
+			},
+			"stats": { "maxHealth": 18, "meleeDamage": 2.6, "meleeTier": 1, "moveSpeed": 0.034, "resist": { "nature": 0.2, "arcane": 0.1 } },
+			"nameFormat": { "langKey": "canrpgmobs:race-nameformat" }
+		},
+		{
+			"id": "ork",
+			"name": { "langKey": "canrpgmobs:race-ork" },
+			"body": "humanoid",
+			"faction": "warband",
+			"animSet": "humanoid_base",
+			"soundSet": "humanoid",
+			"loot": ["ork_spoils"],
+			"appearance": {
+				"kind": "plm",
+				"model": "racialequality:ork",
+				"presets": [
+					{ "id": "bloodtusk", "weight": 3, "parts": { "baseskin": "skin2", "eyecolor": "cadmium-orange", "underwear": "breeches", "ears": "pulledears", "hairbase": "iroquois", "hairextra": "none", "facialexpression": "angry", "mustache": "none", "beard": "none", "haircolor": "eerieblack" } },
+					{ "id": "ironjaw", "weight": 2, "parts": { "baseskin": "skin5", "eyecolor": "acid-green", "underwear": "breeches", "ears": "arrowears", "hairbase": "bald", "hairextra": "topknot", "facialexpression": "determined", "mustache": "mst-u01-horseshoe", "beard": "brd-chin15-goatee", "haircolor": "slategray" } }
+				],
+				"gear": ["game:clothes-lowerbody-raw-hide-trousers", "game:clothes-foot-worn-leather-boots", "game:clothes-waist-heavy-belt"]
+			},
+			"stats": { "maxHealth": 30, "meleeDamage": 4, "meleeTier": 2, "moveSpeed": 0.03, "resist": { "physical": 0.05 } },
+			"nameFormat": { "langKey": "canrpgmobs:race-nameformat" }
+		}
+	],
+
+	"roles": [
+		{
+			"id": "guard",
+			"name": { "langKey": "canrpgmobs:role-guard" },
+			"aiProfile": "guardian",
+			"statMul": { "maxHealth": 1.3, "meleeDamage": 1.1, "moveSpeed": 0.95 },
+			"gear": ["game:armor-head-chain-copper", "game:armor-body-chain-copper", "game:armor-legs-chain-copper"],
+			"rightHand": "game:blade-falx-copper",
+			"leftHand": "game:shield-crude",
+			"skills": [
+				{
+					"id": "rend",
+					"spell": "canrpgclasses:rend",
+					"priority": 55,
+					"minRange": 0,
+					"maxRange": 3.5,
+					"cooldown": 9,
+					"initialCooldown": [2, 4],
+					"animation": { "cast": "attack" },
+					"recoverMs": 300
+				},
+				{
+					"id": "rally",
+					"_comment": "Buffs nearby allies once the fight is on.",
+					"spell": "canrpgclasses:war_cry",
+					"target": "self",
+					"priority": 80,
+					"cooldown": 30,
+					"initialCooldown": [3, 6],
+					"conditions": [
+						{ "type": "enemiesInRange", "range": 8, "min": 1 },
+						{ "type": "alliesInRange", "range": 10, "min": 1 }
+					],
+					"animation": { "cast": "attack" },
+					"recoverMs": 300
+				}
+			]
+		},
+		{
+			"id": "berserker",
+			"name": { "langKey": "canrpgmobs:role-berserker" },
+			"aiProfile": "berserk",
+			"statMul": { "maxHealth": 1.1, "meleeDamage": 1.15, "moveSpeed": 1.1 },
+			"gear": ["game:armor-body-jerkin-leather", "game:armor-legs-jerkin-leather"],
+			"rightHand": "game:axe-bearded-ruined",
+			"skills": [
+				{
+					"id": "tremor",
+					"spell": "canrpgclasses:ground_tremor",
+					"priority": 60,
+					"minRange": 0,
+					"maxRange": 4,
+					"cooldown": 12,
+					"initialCooldown": [3, 5],
+					"conditions": [
+						{ "type": "enemiesInRange", "range": 5, "min": 1 },
+						{ "type": "chance", "value": 0.6 }
+					],
+					"animation": { "cast": "attack" },
+					"recoverMs": 400
+				},
+				{
+					"id": "bloodrage",
+					"_comment": "Below half health: hits harder for 12 seconds.",
+					"action": { "type": "enrage", "value": 1.4, "seconds": 12 },
+					"target": "self",
+					"priority": 90,
+					"cooldown": 45,
+					"conditions": [
+						{ "type": "selfHpBelow", "value": 0.5 }
+					],
+					"animation": { "cast": "attack" },
+					"recoverMs": 200
+				}
+			]
+		},
+		{
+			"id": "arcanist",
+			"name": { "langKey": "canrpgmobs:role-arcanist" },
+			"aiProfile": "caster",
+			"statMul": { "maxHealth": 0.8, "meleeDamage": 0.6, "spellPower": 1.2 },
+			"gear": ["game:clothes-shoulder-mooncloth-robe"],
+			"skills": [
+				{
+					"id": "frost_bolt",
+					"spell": "canrpgclasses:ice_bolt",
+					"priority": 55,
+					"minRange": 3,
+					"maxRange": 20,
+					"cooldown": 5,
+					"initialCooldown": [1, 2],
+					"animation": { "cast": "cast", "release": "release" },
+					"interrupt": { "onDamage": true, "damageFraction": 0.2, "onTargetLost": "cancel" },
+					"recoverMs": 400
+				},
+				{
+					"id": "arcane_blast",
+					"spell": "canrpgclasses:mystic_blast",
+					"priority": 60,
+					"minRange": 3,
+					"maxRange": 20,
+					"cooldown": 10,
+					"initialCooldown": [3, 6],
+					"conditions": [
+						{ "type": "chance", "value": 0.6 }
+					],
+					"animation": { "cast": "cast", "release": "release" },
+					"interrupt": { "onDamage": true, "damageFraction": 0.2, "onTargetLost": "cancel" },
+					"recoverMs": 400
+				}
+			]
+		},
+		{
+			"id": "priest",
+			"name": { "langKey": "canrpgmobs:role-priest" },
+			"aiProfile": "support_caster",
+			"statMul": { "maxHealth": 0.85, "meleeDamage": 0.5, "healingPower": 1.25 },
+			"gear": ["game:clothes-shoulder-jord-robe"],
+			"skills": [
+				{
+					"id": "heal",
+					"spell": "canrpgclasses:swift_heal",
+					"target": "lowestHpAlly",
+					"allyHpBelow": 0.65,
+					"priority": 80,
+					"minRange": 0,
+					"maxRange": 18,
+					"cooldown": 7,
+					"initialCooldown": [1, 3],
+					"animation": { "cast": "cast", "release": "release" },
+					"interrupt": { "onDamage": true, "damageFraction": 0.25, "onTargetLost": "finish" },
+					"recoverMs": 400
+				},
+				{
+					"id": "smite",
+					"spell": "canrpgclasses:sacred_flame",
+					"priority": 50,
+					"minRange": 2,
+					"maxRange": 20,
+					"cooldown": 6,
+					"initialCooldown": [2, 4],
+					"animation": { "cast": "cast", "release": "release" },
+					"recoverMs": 400
+				}
+			]
+		},
+		{
+			"id": "necromancer",
+			"name": { "langKey": "canrpgmobs:role-necromancer" },
+			"aiProfile": "caster",
+			"statMul": { "maxHealth": 0.8, "meleeDamage": 0.5, "spellPower": 1.15 },
+			"gear": ["game:clothes-shoulder-malefactor-cloak"],
+			"skills": [
+				{
+					"id": "raise_dead",
+					"_comment": "Calls two risen guards a few seconds into the fight.",
+					"action": { "type": "summon", "mob": "skeleton|guard", "count": 2, "maxAlive": 2, "radius": 4 },
+					"target": "self",
+					"priority": 85,
+					"cooldown": 40,
+					"initialCooldown": [6, 10],
+					"conditions": [
+						{ "type": "inCombatFor", "value": 4 }
+					],
+					"animation": { "cast": "cast" },
+					"recoverMs": 600
+				},
+				{
+					"id": "brand",
+					"spell": "canrpgclasses:shadow_brand",
+					"priority": 55,
+					"minRange": 0,
+					"maxRange": 20,
+					"cooldown": 12,
+					"initialCooldown": [1, 3],
+					"animation": { "cast": "cast", "release": "release" },
+					"recoverMs": 400
+				},
+				{
+					"id": "plague",
+					"spell": "canrpgclasses:consuming_plague",
+					"priority": 50,
+					"minRange": 0,
+					"maxRange": 20,
+					"cooldown": 14,
+					"initialCooldown": [3, 6],
+					"animation": { "cast": "cast", "release": "release" },
+					"recoverMs": 400
+				}
+			]
+		},
+		{
+			"id": "stormcaller",
+			"name": { "langKey": "canrpgmobs:role-stormcaller" },
+			"aiProfile": "caster",
+			"statMul": { "maxHealth": 0.9, "meleeDamage": 0.7, "spellPower": 1.1 },
+			"gear": ["game:clothes-shoulder-hooded-cape"],
+			"skills": [
+				{
+					"id": "arc",
+					"spell": "canrpgclasses:arc_bolt",
+					"priority": 55,
+					"minRange": 3,
+					"maxRange": 20,
+					"cooldown": 5,
+					"initialCooldown": [1, 2],
+					"animation": { "cast": "cast", "release": "release" },
+					"interrupt": { "onDamage": true, "damageFraction": 0.2, "onTargetLost": "cancel" },
+					"recoverMs": 400
+				},
+				{
+					"id": "jolt",
+					"spell": "canrpgclasses:earthen_jolt",
+					"priority": 60,
+					"minRange": 0,
+					"maxRange": 16,
+					"cooldown": 9,
+					"initialCooldown": [2, 4],
+					"conditions": [
+						{ "type": "chance", "value": 0.5 }
+					],
+					"animation": { "cast": "release" },
+					"recoverMs": 300
+				}
+			]
+		}
+	],
+
+	"mobs": [
+		{
+			"id": "dwarf_thane",
+			"name": { "langKey": "canrpgmobs:mob-dwarf_thane" },
+			"race": "dwarf",
+			"role": "guard",
+			"levelRange": [6, 9],
+			"defaultTier": "elite",
+			"stats": { "maxHealth": 70 },
+			"appearance": {
+				"_comment": "Replaces the race's clothes and the guard's copper chain. The falx sets the melee damage; gear never drops, loot comes from the loot tables.",
+				"gear": ["game:clothes-lowerbody-miner", "game:clothes-foot-miner", "game:armor-head-chain-iron", "game:armor-body-chain-iron", "game:armor-legs-chain-iron"],
+				"rightHand": "game:blade-falx-iron",
+				"leftHand": "game:shield-blackguard"
+			},
+			"loot": ["boss_hoard"],
+			"phases": [
+				{
+					"id": "stand",
+					"_comment": "At half health: can't be stunned or feared and takes less damage.",
+					"hpBelow": 0.5,
+					"announce": { "langKey": "canrpgmobs:phase-thane-stand" },
+					"ccImmune": ["stun", "fear"],
+					"damageTakenMul": 0.8
+				}
+			],
+			"skills": [
+				{
+					"id": "war_shout",
+					"spell": "canrpgclasses:fearsome_shout",
+					"priority": 95,
+					"minRange": 0,
+					"maxRange": 10,
+					"cooldown": 0,
+					"conditions": [
+						{ "type": "hpPhase", "value": 0.3 }
+					],
+					"animation": { "cast": "attack" },
+					"recoverMs": 400
+				}
+			]
+		},
+		{
+			"id": "elf_ranger",
+			"name": { "langKey": "canrpgmobs:mob-elf_ranger" },
+			"race": "elf",
+			"role": "hunter",
+			"levelRange": [4, 7],
+			"defaultTier": "elite",
+			"appearance": {
+				"_comment": "A longbow: more damage per shot than the hunter's simple bow.",
+				"gear": ["game:clothes-upperbody-hunters-green", "game:clothes-lowerbody-hunter-leggings", "game:clothes-foot-hunter-boots", "game:clothes-shoulder-forestponcho"],
+				"rightHand": "game:bow-long"
+			}
+		},
+		{
+			"id": "elf_warden",
+			"name": { "langKey": "canrpgmobs:mob-elf_warden" },
+			"race": "elf",
+			"role": "arcanist",
+			"levelRange": [5, 8],
+			"defaultTier": "elite",
+			"stats": { "maxHealth": 45 },
+			"appearance": {
+				"gear": ["game:clothes-upperbody-hunters-green", "game:clothes-lowerbody-hunter-leggings", "game:clothes-foot-hunter-boots", "game:clothes-shoulder-longsleeve-pearl-moonrobe", "game:clothes-head-silver-diadem"]
+			},
+			"skills": [
+				{
+					"id": "self_mend",
+					"spell": "canrpgclasses:swift_heal",
+					"target": "self",
+					"priority": 85,
+					"maxRange": 20,
+					"cooldown": 20,
+					"conditions": [
+						{ "type": "selfHpBelow", "value": 0.4 }
+					],
+					"animation": { "cast": "cast", "release": "release" },
+					"recoverMs": 400
+				}
+			]
+		},
+		{
+			"id": "ork_warlord",
+			"name": { "langKey": "canrpgmobs:mob-ork_warlord" },
+			"race": "ork",
+			"role": "berserker",
+			"levelRange": [8, 12],
+			"defaultTier": "boss",
+			"_comment": "Own melee damage: the boss tier, the rage phase and bloodrage all multiply it.",
+			"stats": { "meleeDamage": 2.5 },
+			"appearance": {
+				"_comment": "The template's own meleeDamage wins, so the axe here is looks only.",
+				"gear": ["game:clothes-lowerbody-raw-hide-trousers", "game:armor-head-plate-iron", "game:armor-body-plate-iron", "game:armor-legs-plate-iron", "game:clothes-shoulder-royal-fur"],
+				"rightHand": "game:axe-double-ruined"
+			},
+			"lootMode": "replace",
+			"loot": ["boss_hoard", "ork_spoils"],
+			"phases": [
+				{
+					"id": "call",
+					"hpBelow": 0.7,
+					"announce": { "langKey": "canrpgmobs:phase-warlord-call" },
+					"actions": [
+						{ "type": "summon", "mob": "ork|berserker", "count": 2, "maxAlive": 2, "radius": 5 }
+					]
+				},
+				{
+					"id": "rage",
+					"hpBelow": 0.35,
+					"announce": { "langKey": "canrpgmobs:phase-warlord-rage" },
+					"ccImmune": ["stun"],
+					"damageMul": 1.2
+				}
+			]
+		},
+		{
+			"id": "bone_lord",
+			"name": { "langKey": "canrpgmobs:mob-bone_lord" },
+			"race": "skeleton",
+			"role": "necromancer",
+			"levelRange": [10, 14],
+			"defaultTier": "boss",
+			"lootMode": "replace",
+			"loot": ["boss_hoard", "bone_pile"],
+			"appearance": {
+				"model": "skeletons:possessed",
+				"presets": [
+					{ "id": "oathbreaker", "weight": 2, "parts": { "skeleton-bonecolor": "4", "skeleton-skullinside": "4", "skeleton-metalcolor": "blackbronze", "skeleton-skull": "9", "skeleton-jaw": "1", "skeleton-ribcage": "2", "skeleton-accessories": "1" } },
+					{ "id": "burnt", "weight": 1, "parts": { "skeleton-bonecolor": "20", "skeleton-skullinside": "20", "skeleton-metalcolor": "iron-rusted", "skeleton-skull": "3", "skeleton-jaw": "2", "skeleton-ribcage": "4", "skeleton-accessories": "5" } }
+				],
+				"gear": ["game:armor-body-antique-forlorn-damaged", "game:armor-legs-antique-forlorn-damaged", "game:clothes-head-rottenking", "game:clothes-shoulder-malefactor-cloak"]
+			},
+			"_comment": "maxAlive counts every summon of the mob, so the skill and the phase share one limit: skill up to 4, phase up to 5.",
+			"skillsMode": "replace",
+			"skills": [
+				{
+					"id": "raise_dead",
+					"action": { "type": "summon", "mob": "skeleton|guard", "count": 2, "maxAlive": 4, "radius": 4 },
+					"target": "self",
+					"priority": 85,
+					"cooldown": 30,
+					"initialCooldown": [6, 10],
+					"conditions": [
+						{ "type": "inCombatFor", "value": 4 }
+					],
+					"animation": { "cast": "cast" },
+					"recoverMs": 600
+				},
+				{
+					"id": "brand",
+					"spell": "canrpgclasses:shadow_brand",
+					"priority": 55,
+					"minRange": 0,
+					"maxRange": 20,
+					"cooldown": 12,
+					"initialCooldown": [1, 3],
+					"animation": { "cast": "cast", "release": "release" },
+					"recoverMs": 400
+				},
+				{
+					"id": "plague",
+					"spell": "canrpgclasses:consuming_plague",
+					"priority": 50,
+					"minRange": 0,
+					"maxRange": 20,
+					"cooldown": 14,
+					"initialCooldown": [3, 6],
+					"animation": { "cast": "cast", "release": "release" },
+					"recoverMs": 400
+				}
+			],
+			"phases": [
+				{
+					"id": "raise",
+					"hpBelow": 0.6,
+					"announce": { "langKey": "canrpgmobs:phase-bonelord-raise" },
+					"actions": [
+						{ "type": "summon", "mob": "skeleton|guard", "count": 3, "maxAlive": 5, "radius": 6 }
+					]
+				},
+				{
+					"id": "veil",
+					"hpBelow": 0.25,
+					"announce": { "langKey": "canrpgmobs:phase-bonelord-veil" },
+					"ccImmune": ["stun", "fear", "silence"],
+					"damageTakenMul": 0.7,
+					"spellPowerMul": 1.3
+				}
+			]
+		},
+		{
+			"id": "plague_carrier",
+			"name": { "langKey": "canrpgmobs:mob-plague_carrier" },
+			"race": "skeleton",
+			"role": "berserker",
+			"levelRange": [4, 7],
+			"defaultTier": "champion",
+			"appearance": {
+				"model": "skeletons:infected",
+				"presets": [
+					{ "id": "blighted", "weight": 2, "parts": { "skeleton-bonecolor": "12", "skeleton-skullinside": "12", "skeleton-eyecolor": "blight", "skeleton-eyes": "8", "skeleton-skull": "11", "skeleton-jaw": "5", "skeleton-ribcage": "6", "skeleton-accessories": "3" } },
+					{ "id": "rotting", "weight": 2, "parts": { "skeleton-bonecolor": "18", "skeleton-skullinside": "18", "skeleton-eyecolor": "rot", "skeleton-eyes": "15", "skeleton-skull": "13", "skeleton-jaw": "6", "skeleton-ribcage": "5", "skeleton-accessories": "4" } }
+				],
+				"gear":["game:clothes-lowerbody-rotwalker", "game:clothes-foot-rotwalker", "game:clothes-shoulder-rotwalker", "game:clothes-head-rotwalker"],
+				"rightHand": "game:club-spiked-ruined"
+			},
+			"skills": [
+				{
+					"id": "spread_plague",
+					"spell": "canrpgclasses:consuming_plague",
+					"priority": 70,
+					"minRange": 0,
+					"maxRange": 12,
+					"cooldown": 10,
+					"initialCooldown": [2, 4],
+					"animation": { "cast": "attack" },
+					"recoverMs": 300
+				}
+			]
+		}
+	],
+
+	"groups": [
+		{
+			"id": "dwarf_patrol",
+			"name": { "langKey": "canrpgmobs:group-dwarf_patrol" },
+			"radius": 5,
+			"members": [
+				{ "mob": "dwarf|guard", "count": [2, 3] },
+				{ "mob": "dwarf|priest", "count": [1, 1] }
+			]
+		},
+		{
+			"id": "elf_hunters",
+			"name": { "langKey": "canrpgmobs:group-elf_hunters" },
+			"radius": 6,
+			"members": [
+				{ "mob": "elf_ranger", "count": [1, 2] },
+				{ "mob": "elf|hunter", "count": [1, 2] },
+				{ "mob": "elf|arcanist", "count": [1, 1] },
+				{ "mob": "elf|priest", "count": [1, 1] }
+			]
+		},
+		{
+			"id": "ork_warband",
+			"name": { "langKey": "canrpgmobs:group-ork_warband" },
+			"radius": 6,
+			"members": [
+				{ "mob": "ork|berserker", "count": [2, 3] },
+				{ "mob": "ork|stormcaller", "count": [1, 1] },
+				{ "mob": "goblin|looter", "count": [1, 2] }
+			]
+		},
+		{
+			"id": "undead_horde",
+			"name": { "langKey": "canrpgmobs:group-undead_horde" },
+			"radius": 7,
+			"members": [
+				{ "mob": "skeleton|guard", "count": [3, 4] },
+				{ "mob": "plague_carrier", "count": [0, 1] },
+				{ "mob": "skeleton|berserker", "count": [1, 2] },
+				{ "mob": "skeleton|necromancer", "count": [0, 1] }
+			]
+		},
+		{
+			"id": "cult_circle",
+			"name": { "langKey": "canrpgmobs:group-cult_circle" },
+			"radius": 5,
+			"faction": "cult",
+			"members": [
+				{ "mob": "human|necromancer", "count": [1, 1] },
+				{ "mob": "skeleton|guard", "count": [2, 3] }
+			]
+		}
+	]
+}

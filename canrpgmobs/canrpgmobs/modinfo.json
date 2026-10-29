@@ -1,0 +1,17 @@
+{
+    "$schema": "https://moddbcdn.vintagestory.at/schema/modinfo.latest.json",
+    "type": "Code",
+    "modid": "canrpgmobs",
+    "name": "CAN RPG Mobs",
+    "authors": [
+        "KenigVovan"
+    ],
+    "description": "Data-driven NPC mobs (races, roles, bosses, factions, loot) that fight with canrpgclasses spells. Includes an in-game mob editor and a spawner block.",
+    "version": "0.1.0",
+    "dependencies": {
+        "game": "",
+        "canrpgclasses": "",
+        "effectshud": "",
+        "playermodellib": ""
+    }
+}

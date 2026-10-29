@@ -1,0 +1,33 @@
+{
+	"formatVersion": 1,
+	"scaling": {
+		"hpPerLevel": 0.1,
+		"damagePerLevel": 0.05,
+		"spellPowerPerLevel": 0.05,
+		"resistPerLevel": 0.002,
+		"maxLevel": 60
+	},
+	"tiers": [
+		{
+			"id": "normal",
+			"name": { "langKey": "canrpgmobs:tier-normal" }
+		},
+		{
+			"id": "elite",
+			"name": { "langKey": "canrpgmobs:tier-elite" },
+			"nameFormat": { "langKey": "canrpgmobs:tier-elite-name" },
+			"hp": 2.5, "damage": 1.4, "spellPower": 1.25, "damageTaken": 0.9, "lootRolls": 1, "size": 1.1
+		},
+		{
+			"id": "champion",
+			"name": { "langKey": "canrpgmobs:tier-champion" },
+			"nameFormat": { "langKey": "canrpgmobs:tier-champion-name" },
+			"hp": 5, "damage": 1.8, "spellPower": 1.5, "damageTaken": 0.8, "lootRolls": 2, "size": 1.2, "ccDurationMul": 0.7
+		},
+		{
+			"id": "boss",
+			"name": { "langKey": "canrpgmobs:tier-boss" },
+			"hp": 12, "damage": 2.2, "spellPower": 1.8, "damageTaken": 0.7, "lootRolls": 4, "size": 1.35, "ccDurationMul": 0.5
+		}
+	]
+}
